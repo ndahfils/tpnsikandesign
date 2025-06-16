@@ -1,0 +1,95 @@
+# CONFIGURATION DECAP CMS POUR TP N'SIKAN PROJET ESPOIR
+# MODIFIER ICI pour personnaliser l'interface d'administration
+
+backend:
+  name: git-gateway
+  branch: main
+
+# MODIFIER ICI : URL du site après déploiement
+media_folder: "public/images"
+public_folder: "/images"
+
+# COLLECTIONS - MODIFIER ICI pour ajouter/supprimer des sections
+collections:
+  # PAGES PRINCIPALES
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Page d'Accueil"
+        file: "content/home.md"
+        fields:
+          - { label: "Titre Principal", name: "title", widget: "string" }
+          - { label: "Sous-titre", name: "subtitle", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          
+      - name: "about"
+        label: "À Propos"
+        file: "content/about.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Histoire", name: "history", widget: "markdown" }
+          - { label: "Mission", name: "mission", widget: "text" }
+          - { label: "Vision", name: "vision", widget: "text" }
+
+  # SERVICES - MODIFIER ICI pour ajouter/modifier des services
+  - name: "services"
+    label: "Services"
+    folder: "content/services"
+    create: true
+    fields:
+      - { label: "Nom du Service", name: "title", widget: "string" }
+      - { label: "Description Courte", name: "description", widget: "text" }
+      - { label: "Description Complète", name: "body", widget: "markdown" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Prix Indicatif", name: "price", widget: "string", required: false }
+
+  # PROJETS - MODIFIER ICI pour ajouter des projets
+  - name: "projects"
+    label: "Projets"
+    folder: "content/projects"
+    create: true
+    fields:
+      - { label: "Nom du Projet", name: "title", widget: "string" }
+      - { label: "Catégorie", name: "category", widget: "select", options: ["construction", "renovation", "amenagement"] }
+      - { label: "Lieu", name: "location", widget: "string" }
+      - { label: "Date", name: "date", widget: "string" }
+      - { label: "Client", name: "client", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image Principale", name: "image", widget: "image" }
+      - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+
+  # ÉQUIPE - MODIFIER ICI pour gérer l'équipe
+  - name: "team"
+    label: "Équipe"
+    folder: "content/team"
+    create: true
+    fields:
+      - { label: "Nom", name: "name", widget: "string" }
+      - { label: "Poste", name: "role", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Email", name: "email", widget: "string", required: false }
+
+  # PARAMÈTRES GÉNÉRAUX - MODIFIER ICI pour les couleurs et infos générales
+  - name: "settings"
+    label: "Paramètres"
+    files:
+      - name: "general"
+        label: "Paramètres Généraux"
+        file: "content/settings/general.yml"
+        fields:
+          - { label: "Nom de l'Entreprise", name: "company_name", widget: "string" }
+          - { label: "Slogan", name: "tagline", widget: "string" }
+          - { label: "Téléphone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Adresse", name: "address", widget: "text" }
+          - { label: "Facebook", name: "facebook", widget: "string" }
+          
+      - name: "colors"
+        label: "Couleurs du Site"
+        file: "content/settings/colors.yml"
+        fields:
+          - { label: "Couleur Principale (Vert)", name: "primary_green", widget: "color", default: "#22c55e" }
+          - { label: "Couleur Secondaire (Rouge)", name: "primary_red", widget: "color", default: "#991b1b" }
+          - { label: "Couleur Grise", name: "primary_gray", widget: "color", default: "#6b7280" }
